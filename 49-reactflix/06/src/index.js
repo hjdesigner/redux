@@ -10,7 +10,7 @@ import configureStore from './redux-flow/configure-store'
 const store = configureStore()
 
 const db = firebase.database()
-const videos = db.ref('/videos')
+const videos = db.ref('videos')
 
 videos.on('value', (snapshot) => {
   console.log('snapshot', snapshot.val())
