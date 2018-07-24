@@ -6,10 +6,10 @@ import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import App from './app'
 import configureStore from './redux-flow/configure-store'
+import { db } from './config/firebase'
 
 const store = configureStore()
 
-const db = firebase.database()
 const videos = db.ref('videos')
 
 // videos.on('value', (snapshot) => {
@@ -21,6 +21,37 @@ const videos = db.ref('videos')
 videos.once('value').then((snapshot) => {
   console.log('snapshot', snapshot.val())
 })
+
+/* REMOVE VIDEO
+
+videos.update({
+  id: null,
+  title: null
+})
+
+videos.child('-LIBpu-v30fQNS72egfM').update({
+  id: null
+}) */
+
+/*
+ UPADATE VIDEO
+const anyVideo = videos.child('-LIBpu-v30fQNS72egfM')
+anyVideo.set({
+  id: 'PXlcFWEmTS0',
+  title: 'Portugal 2'
+})
+anyVideo.update({
+  title: 'Portugal 2 update'
+}) */
+
+/*
+ADD NEW VIDEO
+const newVideo = videos.push()
+
+newVideo.set({
+  id: 'PXlcFWEmTS0',
+  title: 'Portugal'
+}) */
 
 const renderApp = (NextApp) => {
   render(
